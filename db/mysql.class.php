@@ -37,7 +37,17 @@ class mysql
 		$this->passwd = NULL;
 		$this->database = NULL;
 		$this->sql = NULL;
-		$this->cacert = "/etc/ssl/certs/ca-bundle.crt";
+
+		$ca_centos = "/etc/ssl/certs/ca-bundle.crt";
+		$ca_freebsd = "/usr/local/share/certs/ca-root-nss.crt";
+
+		if ( is_file ($ca_centos) ) {
+			$this->cacert = $ca_centos;
+		} elseif ( is_file ($ca_freebsd) ) {
+			$this->cacert = $ca_freebsd;
+		} else {
+			$this->cacert = NULL;
+		}
 		$this->port = 3306;
 	}
 	

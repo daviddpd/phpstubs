@@ -1,6 +1,6 @@
 <?php
 header('Content-type: application/json');
-include 'db/mysql.class.php';
+include 'mysql.class.php';
 
 /*
 
@@ -24,6 +24,10 @@ $mysql_username = "demo";
 $mysql_dbname = "demo";
 $mysql_password = "abcd1234";
 
+if ( is_file ( "config.php" ) )
+{
+	include "config.php";
+}
 #
 # This class forces SSL & 
 # mysqli_escape_string all values automatically
